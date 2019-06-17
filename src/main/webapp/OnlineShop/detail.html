@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,height-device-height,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>商品详情页面</title>
+	</head>
+	<style type="text/css">
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		
+		.wrap {
+			height: 100%;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+		}
+		
+		.top {
+			margin-top: 50px;
+			height: 350px;
+			width: 100%;
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+		}
+		
+		.goods_img {
+			width: 40%;
+			height: 100%;
+			background: #FF0000;
+		}
+		
+		.goods_img>img {
+			width: 100%;
+			height: 350px;
+		}
+		
+		.top>.goods_price {
+			width: 60%;
+		}
+		
+		.goods_price>div {
+			height: 44px;
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+		
+		.goods_price>div:nth-child(1) {
+			margin-top: 25px;
+		}
+		
+		.line {
+			height: 1px;
+			width: auto;
+			background-color: #EEEEEE;
+			line-height: 50px;
+			padding-left: 15px;
+			margin-top: 20px;
+		}
+		
+		.price {
+			height: 44px;
+			width: auto;
+			background-color: #A1D3EF;
+			line-height: 50px;
+			padding-left: 15px;
+			margin-top: 5px;
+		}
+		
+		.desc {
+			height: 100%;
+			width: auto;
+			padding: 15px;
+			-webkit-box-flex: 1;
+		}
+		
+		.btn {
+			height: 60px;
+			width: 100%;
+			position: relative;
+		}
+		
+		.btn div {
+			float: left;
+			width: 50%;
+			height: 100%;
+			line-height: 60px;
+			font-size: 16px;
+			text-align: center;
+			color: white;
+		}
+		
+		.btn div:nth-child(1) {
+			background-color: #FF9900;
+		}
+		
+		.btn div:nth-child(2) {
+			background-color: #FF0000;
+		}
+	</style>
+
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<div class="goods_img">
+					<img id="img_detail" src="img/baoma.jpg" />
+				</div>
+				<div class="goods_price">
+					<div>商品编码：<span id="goodsCode"></span></div>
+					<div>商品名称：<span id="goodsName"></span></div>
+					<div>商品价格：<span id="goodsPrice"></span></div>
+					<div>商品类型：<span id="goodsType"></span></div>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div class="price">商品详情</div>
+			<div id="goodsDesc" class="desc">
+			</div>
+			<div class="btn">
+				<div>加入购物车</div>
+				<div>立即购买</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			var img_detail = $api.byId("img_detail");
+			var price = $api.dom(".price");
+			var desc = $api.dom(".desc");
+
+			var req = GetRequest();
+			console.log(req);
+			initPic(req);
+			getCarById(req);
+
+			function getCarById(id) {
+				var json = {
+					goodsId: id
+				}
+				//根据商品id查询商品信息
+				$.ajax({
+					url: "http://192.168.215.131:8080/university/goods/queryById",
+					type: "POST",
+					data: json,
+					dataType: "json",
+					success: function(ret) {
+						console.log(ret.data);
+						if(ret.status == "1") {
+							var obj = ret.data; //先给input标签赋值
+							$("#goodsCode").html(obj.goodsCode);
+							$("#goodsName").html(obj.goodsName);
+							$("#goodsPrice").html(obj.goodsPrice);
+							$("#goodsType").html(obj.goodsType);
+							$("#goodsDesc").html(obj.goodsDesc);
+							$("#img_detail").attr("src", obj.goodsPicUrl);
+						}
+					}
+				});
+			}
+
+			function initPic(type) {
+				switch(type) {
+					case "1":
+						$api.attr(img_detail, "src", "img/baoma.jpg")
+						break;
+					case "2":
+						$api.attr(img_detail, "src", "img/benchi.jpg")
+						break;
+					case "3":
+						$api.attr(img_detail, "src", "img/bl.jpg")
+						break;
+					case "4":
+						$api.attr(img_detail, "src", "img/luhu.jpg")
+						break;
+					default:
+						break;
+				}
+			}
+
+			//获取url参数封装成对象
+			function GetRequest() {
+				var url = location.search; //获取url中"?"符后的字串
+				var theRequest = "";
+				if(url.indexOf("?") != -1) {
+					console.log(url);
+					theRequest = decodeURIComponent(url.substring(4));
+				}
+				return theRequest;
+			}
+		</script>
+
+	</body>
+
+</html>

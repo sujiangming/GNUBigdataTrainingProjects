@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,height-device-height,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>简易商城</title>
+	</head>
+	<link type="text/css" rel="stylesheet" href="css/swiper.min.css" />
+	<style>
+		html,
+		body {
+			position: relative;
+			height: 100%;
+		}
+		
+		body {
+			background: #eee;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			color: #000;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.swiper-container {
+			width: 100%;
+			height: 350px;
+		}
+		
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+		
+		.menu {
+			height: 80px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+			background-color: #EEEEEE;
+		}
+		
+		.menu div {
+			display: -webkit-box;
+			-webkit-box-flex: 1;
+			-webkit-box-orient: vertical;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+		}
+		
+		.menu div img {
+			width: 50px;
+			height: 50px;
+			border-radius: 25px;
+		}
+		
+		.menu div font {
+			color: #007AFF;
+			font-size: 16px;
+			display: block;
+			margin-top: 5px;
+		}
+		
+		#fr_footer {
+			height: auto;
+			width: 100%;
+			background: #FEFEFE;
+		}
+		
+		#fr_footer table {
+			height: 100%;
+			width: 100%;
+		}
+		
+		#fr_footer table>thead>tr>td {
+			text-align: center;
+		}
+		
+		#fr_footer table>tbody {
+			background: #FEFEFE;
+		}
+		
+		#fr_footer table>tbody>tr {
+			width: 100%;
+			background: #FEFEFE;
+		}
+		
+		#fr_footer table>tbody>tr>td {
+			width: 25%;
+			height: 100%;
+			background: #FEFEFE;
+		}
+		
+		.td_div_1 {
+			height: 280px;
+			width: 100%;
+		}
+		
+		.td_div_2 {
+			height: 40px;
+			background: #FFFAE8;
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+		
+		.td_div_1 img {
+			height: 270px;
+			width: 90%;
+			margin-top: 10px;
+			margin-left: 5%;
+		}
+	</style>
+
+	<body>
+		<!-- Swiper -->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="img/baoma.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="img/benchi.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="img/bl.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="img/luhu.jpg" />
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="menu">
+			<div>
+				<img src="img/baoma.jpg" />
+				<font>德系车</font>
+			</div>
+			<div>
+				<img src="img/benchi.jpg" />
+				<font>美系车</font>
+			</div>
+			<div>
+				<img src="img/bl.jpg" />
+				<font>日系车</font>
+			</div>
+			<div>
+				<img src="img/luhu.jpg" />
+				<font>国产车</font>
+			</div>
+		</div>
+		<div id="fr_footer">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<td colspan="4">
+							<img src="img/youhui.png" />
+						</td>
+					</tr>
+				</thead>
+				<tbody id="t_body">
+					<!--<tr>
+						<td>
+							<div class="td_div_1">
+								<img src="img/baoma.jpg" />
+							</div>
+							<div class="td_div_2">
+								<div>价格：￥20万</div>
+								<div>描述：新品上市</div>
+							</div>
+						</td>
+						<td>
+							<div class="td_div_1">
+								<img src="img/benchi.jpg" />
+							</div>
+							<div class="td_div_2">
+								<div>价格：￥20万</div>
+								<div>描述：新品上市</div>
+							</div>
+						</td>
+						<td onclick="go_detail(this)">
+							<div class="td_div_1">
+								<img src="img/bl.jpg" />
+							</div>
+							<div class="td_div_2">
+								<div>价格：￥20万</div>
+								<div>描述：新品上市</div>
+							</div>
+						</td>
+					</tr>-->
+				</tbody>
+
+			</table>
+		</div>
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			
+			//调用后台接口，获取商品信息表
+			getGoodsList();
+			
+			var swiper = new Swiper('.swiper-container', {
+				autoplay: 5000, //可选选项，自动滑动
+				loop: true, //可选选项，开启循环
+				pagination: '.swiper-pagination',
+			});
+
+			function go_detail(id) {
+				location.href = 'detail.html?id=' + id;
+			}
+
+			function getGoodsList() {
+				$.ajax({
+					url: "http://192.168.215.131:8080/university/goods/queryAll",
+					type: "GET",
+					data: null,
+					dataType: "json",
+					success: function(ret) {
+						if(ret.status == "1") {
+							createGoodsList(ret.data);
+						}
+					}
+				});
+			}
+			
+			function createGoodsList(list){
+				var html = '';
+				var count = 1;
+				var goods_len = list.length;
+				console.log("总数：" + goods_len);
+				
+				if(goods_len > 0){
+					//先计算总的有多少行
+					var rows = Math.ceil(goods_len / 4);
+					console.log("总行数：" + rows);
+					//每行有4列
+					for (var i = 0; i < rows; i++) {
+						html += '<tr>';
+						for (var j = 0; j < goods_len; j++) {
+							var item = list[j];
+							var id = '\'' + item.id + '\'';
+							if(j >= (4 * (count - 1)) && j < 4 * count){ 
+								console.log("当前的j的值："+j);
+								html += '<td onclick="go_detail('+id+')">'
+								 +	'		<div class="td_div_1">'	
+								 +	'			<img src="'+item.goodsPicUrl+'" />'	
+								 +	'		</div>'	
+								 +	'		<div class="td_div_2">'	
+								 +	'			<div>价格：￥'+ item.goodsPrice + '万</div>'	
+								 +	'			<div>描述：'+ item.goodsDesc + '</div>'	
+								 +	'		</div>'	
+								 +	'	</td>';
+							}
+						}
+						html += '</tr>';
+						count++;
+					}
+				}
+				//先清空
+				$("#t_body").empty();
+				//在添加
+				$("#t_body").html(html);
+			}
+			
+		</script>
+	</body>
+
+</html>
