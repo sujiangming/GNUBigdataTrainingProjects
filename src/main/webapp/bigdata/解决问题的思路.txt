@@ -1,0 +1,35 @@
+思路：部署前确保项目上正常运行	
+	1、针对500错误
+	   （*）Chrome里面F12 
+	   （*）检查代码--定位到错误的地方
+	   （*）确保你的请求路径正确
+	   （*）检查数据库表的生成方式
+			pojo/User.java
+			pojo/Goods.java
+			pojo/JdGoods.java
+	   （*）hibernate.properties
+	   （*）查看MySQL的日志
+			/var/mysql/logs
+		
+		报错：Access Deny "root@localhost" ---》权限问题
+	    报错方式："university.t_university_user" 	--->数据库不存在，事先需要创建	
+	
+	2、404问题
+		配置文件问题：
+		src/main/resources/
+		hibernate.properties  --> #注释内容
+		spring-*.xml  ---> <!-- 注释内容 -->
+		maven依赖没有Deployment Assembly
+				
+		项目有红色感叹号
+		问题原因是：
+		maven依赖有jar的missing ---> Project update   复选框勾选force 
+		jdk:1.5 --->jdk1.8
+		tomcat-7 ---> 移除掉
+		
+	
+
+
+
+
+		

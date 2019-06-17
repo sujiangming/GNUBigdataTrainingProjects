@@ -1,0 +1,13 @@
+2、zookeeper的伪分布安装
+（1）在niit10上搭建
+（*）解压：tar -zxvf zookeeper-3.4.5.tar.gz -C  /training/
+（*）配置环境变量
+		export ZOOKEEPER_HOME=/training/zookeeper-3.4.5
+		export PATH=$ZOOKEEPER_HOME/bin:$PATH
+（*）核心的配置文件  注意conf/zoo.cfg事先是不存在的，需要拷贝
+		拷贝：cp /training/zookeeper-3.4.5/conf/zoo.sample.cfg  /training/zookeeper-3.4.5/conf/zoo.cfg
+		编辑：vi /training/zookeeper-3.4.5/conf/zoo.cfg
+		添加内容：
+			dataDir=/training/zookeeper-3.4.5/tmp    需要事先创建：mkdir tmp
+			server.1=niit10:2888:3888    
+			在/training/zookeeper-3.4.5/tmp下创建一个文件  myid   在文件中写入 1

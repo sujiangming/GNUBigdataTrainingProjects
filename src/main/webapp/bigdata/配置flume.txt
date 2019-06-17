@@ -1,0 +1,35 @@
+
+
+
+编辑配置文件flume-hdfs.conf,添加如下内容：
+a1.sources = s1
+a1.channels = c1
+a1.sinks = k1
+
+# define the source
+a1.sources.s1.type = spooldir  #上传目录类型
+a1.sources.s1.spoolDir = /training/nginx/logs/flumeLogs   #上传该目录下的所有文件
+a1.sources.files_source.fileHeader = true
+a1.sources.files_source.fileHeaderKey = fileName
+
+#define the channel
+a1.channels.c1.type = memory
+a1.channels.c1.capacity = 1000
+a1.channels.c1.transactionCapacity = 1000
+
+# define the sink
+a1.sinks.k1.type = hdfs
+a1.sinks.k1.hdfs.path = hdfs://niit110:9000/flumeLogs        #上传的文件保存在hdfs的/aaa目录下
+a1.sinks.k1.hdfs.fileType = SequenceFile
+a1.sinks.hdfs_sink.hdfs.filePrefix = %{fileName}
+ 
+#source channel sink cooperation
+a1.sources.s1.channels = c1
+a1.sinks.k1.channel = c1
+
+
+启动
+bin/flume-ng agent --conf ./conf/ -f ./conf/flume-hdfs.conf --name a1 -Dflume.root.logger=DEBUG,console
+
+
+

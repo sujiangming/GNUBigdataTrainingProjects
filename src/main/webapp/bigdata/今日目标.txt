@@ -1,0 +1,22 @@
+今日目标：
+	1、解决项目部署问题
+		（1）500/404/403
+			1、查询虚拟机的路由表
+			 route -n
+			 找到你的网关
+			2、查看印象笔记
+			
+		（2）虚拟机tomcat启动后宿主机无法访问
+		（3）MySQL8授权问题
+		（4）MySQL无法自动创建表的问题	
+	2、让数据采集流程联动
+	3、安装AB压测（window/linux）
+	4、编写AB压测脚本（window/linux）
+	5、安装JDK
+	6、Hadoop伪分布安装和zookeeper
+	7、Flume安装
+	8、sqoop安装
+	9、Flume和Linux cron
+	   定时读取nginx/logs/access.logs
+	10、将Flume和Hadoop集成   
+		

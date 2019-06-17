@@ -95,7 +95,7 @@
 							alert("注册成功~");
 							setTimeout("hide_register_window()", 200);
 						} else {
-							alert("注册失败~");
+							alert("用户已经存在，不能重复注册~");
 						}
 					}
 				});

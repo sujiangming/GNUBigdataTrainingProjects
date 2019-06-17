@@ -1,0 +1,93 @@
+3、安装Hadoop（在niit10上安装配置）
+（1）上传hadoop-2.7.3.tar.gz到tools目录下，然后执行下面的命令进行解压安装
+	tar -zvxf hadoop-2.7.3.tar.gz -C /training/
+（2）配置环境变量：
+	vi ~/.bash_profile
+	添加如下信息：
+	export HADOOP_HOME=/training/hadoop-2.7.3
+	export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+（3）让环境变量生效：
+	source ~/.bash_profile
+（4）验证是否生效：
+	执行：hdfs 或者hadopo 有相关信息出现即可
+
+（5）新建一个tmp目录：mkdir /training/hadoop-2.7.3/tmp
+（6）配置免密码登录：
+   执行如下命令：
+	（*）ssh-keygen -t rsa
+	（*）cd ~/.ssh/
+	（*）ssh-copy-id -i id_rsa.pub root@niit10
+（7）进入到/training/hadoop-2.7.3/etc/hadoop目录下
+	   cd /training/hadoop-2.7.3/etc/hadoop
+	   需要对五个文件进行配置：
+	   （*）hadoop-env.sh
+	   （*）hdfs-site.xml
+	   （*）core-site.xml
+	   （*）mapper-site.xml
+	   （*）yarn-site.xml
+（8）对（7）中的五个文件进行配置，配置步骤如下：
+   (*) 在hadoop-env.sh中配置jdk
+		set JAVA_HOME=/training/jdk1.8.0_171
+   (*) 配置hdfs-site.xml文件：
+	vi /training/hadoop-2.7.3/etc/hadoop/hdfs-site.xml
+	在hdfs-site.xml文件的<configuration></configuration>之间添加如下信息：
+		 <property>
+			<name>dfs.replication</name>
+			<value>1</value>
+		 </property>
+		 <property>
+			<name>dfs.permissions</name>
+			<value>false</value>
+		 </property>
+
+(*)配置core-site.xml文件：
+	vi /training/hadoop-2.7.3/etc/hadoop/core-site.xml
+	在core-site.xml文件的<configuration></configuration>之间添加如下信息：
+		 <property>
+			  <name>fs.defaultFS</name>
+			  <value>hdfs://niit10:9000</value>
+		 </property>              
+		 <property>
+			  <name>hadoop.tmp.dir</name>
+			  <value>/training/hadoop-2.7.3/tmp</value>
+		 </property>
+
+(*)配置mapper-site.xml文件（这个文件事先是不存在的，需要复制一份）
+	（1）cp /training/hadoop-2.7.3/etc/hadoop/mapred-site.xml.template /training/hadoop-2.7.3/etc/hadoop/mapred-site.xml
+	（2）vi /training/hadoop-2.7.3/etc/hadoop/mapred-site.xml
+	（3）在mapper-site.xml文件的<configuration></configuration>之间添加如下信息：
+			  <property>
+				   <name>mapreduce.framework.name</name>
+				   <value>yarn</value>
+			  </property>
+(*)配置yarn-site.xml文件：
+	vi /training/hadoop-2.7.3/etc/hadoop/yarn-site.xml
+	在yarn-site.xml文件的<configuration></configuration>之间添加如下信息：
+		 <property>
+			<name>yarn.resourcemanager.hostname</name>
+			<value>niit10</value>
+		 </property>
+		 <property>
+			<name>yarn.nodemanager.aux-services</name>
+			<value>mapreduce_shuffle</value>
+		 </property>    
+
+（9）格式化：HDFS(NameNode)
+	hdfs namenode -format
+	成功日志：
+		 common.Storage: Storage directory /training/hadoop-2.7.3/tmp/dfs/name has been successfully formatted.
+
+（10）启动hadoop环境
+	start-all.sh
+（11）验证：
+	（1）web界面进行验证
+			  HDFS:http://niit10:50070
+			  Yarn:http://niit10:8088
+	（2）执行jps命令，看看是否会有如下进程：
+			  NameNode
+			  DataNode
+			  SecondaryNameNode
+			  ReourceManager
+			  NodeManager
+（12）如果需要停止，则执行如下操作：
+	stop-all.sh

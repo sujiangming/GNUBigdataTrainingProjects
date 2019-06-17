@@ -1,0 +1,40 @@
+6、Flume安装（niit10）
+
+以下所有的操作默认都是在niit10上进行的
+
+1）.上传flume到/tools目录下
+
+2）.解压
+	tar -zvxf apache-flume-1.7.0-bin.tar.gz -C /training/
+3）.环境变量
+
+	export FLUME_HOME=/training/apache-flume-1.7.0-bin
+	export PATH=$PATH:$FLUME_HOME/bin
+	
+4）、在/training/apache-flume-1.7.0-bin/conf目录下，创建与kafka的配置文件：eshop.conf
+	
+	先创建flume的spoolDir：mkdir /training/nginx-1.15.2/logs/flumeLogs
+	
+	vi eshop.conf
+	添加如下内容：
+	a1.sources = r1
+	a1.channels = c1
+	a1.sinks = k1
+
+	a1.sources.r1.type = spooldir
+	a1.sources.r1.spoolDir = /training/nginx-1.14.0/logs/flumeLogs
+	a1.sources.r1.fileHeader = true
+
+	a1.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink
+	a1.sinks.k1.kafka.topic = eshop
+	a1.sinks.k1.kafka.bootstrap.servers = niit10:9092
+
+	a1.channels.c1.type = memory
+
+	a1.sources.r1.channels = c1
+	a1.sinks.k1.channel = c1
+
+5）.验证flume是否成功
+
+	flume-ng version            //next generation.下一代.
+	

@@ -1,0 +1,14 @@
+http://192.168.215.131/shop/detail.html?id=402857816a2e816e016a2e8364430000
+http://192.168.215.131/shop/detail.html?id=402857816a2e5af6016a2e60998e0000
+http://192.168.215.131/shop/detail.html?id=402857816a2f6047016a2f6eae810000
+$(cat url.txt)
+
+##开始
+(shuf -i 1-10000 -n 1) > requests.log
+(shuf -i 1-500 -n 1) > concurrent.log
+for i in $(cat url.txt)  ##循环读取url.txt中的地址
+do
+##执行ab压测产生的结果写入到test_ab.log
+ab -n $(cat requests.log) -c $(cat concurrent.log) $i >> test_ab.log &   
+done
+#结束

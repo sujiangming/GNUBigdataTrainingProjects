@@ -1,0 +1,21 @@
+http://192.168.215.131/shop/detail.html?id=402857816a2e816e016a2e8364430000
+http://192.168.215.131/shop/detail.html?id=402857816a2e5af6016a2e60998e0000
+http://192.168.215.131/shop/detail.html?id=402857816a2f6047016a2f6eae810000
+
+
+
+
+$(cat url.txt)
+
+Sjm@!_123456
+
+mysql> use mysql;
+mysql> UPDATE user SET Host='%' WHERE User='root';
+mysql> flush privileges;
+
+[mysqld]
+character-set-server=utf8
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8

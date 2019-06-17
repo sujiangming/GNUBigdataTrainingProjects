@@ -1,0 +1,22 @@
+3、安装JDK
+   (*) 上传jdk-8u171-linux-x64.tar.gz到tools目录下，然后执行下面的命令进行解压安装
+			tar -zvxf jdk-8u171-linux-x64.tar.gz  -C /training/
+   (*) 配置环境变量：
+			vi ~/.bash_profile
+			 在.bash_profile文件中添加如下信息：
+				 export JAVA_HOME=/training/jdk1.8.0_171
+				  export JRE_HOME=$JAVA_HOME/jre
+				  export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
+				  export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin;
+   (*) 让环境变量生效
+			source ~/.bash_profile
+   (*) 验证jdk是否安装成功
+			java -version
+  
+3、关闭防火墙(CentOS7下)
+   systemctl stop firewalld.service
+   systemctl disable firewalld.service
+	   
+4、配置主机名(如何已经设置，此步骤可以不用设置)
+   hostnamectl --static set-hostname niit
+   说明：--static 参数代表永久生效 niit表达你希望设置的主机名

@@ -1,0 +1,62 @@
+7、sqoop的安装与配置
+
+1）、下载sqoop-1.4.6.tar.gz和sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+2）、上传到/tools目录下
+3）、解压
+	（1）tar -zvxf sqoop-1.4.6.tar.gz -C /training/
+	
+	（2）配置环境变量：
+export SQOOP_HOME=/training/sqoop-1.4.6
+export PATH=$PATH:$SQOOP_HOME/bin
+
+	（3）让环境变量生效：source ~/.bash_profile
+	（4）进入到/training/sqoop-1.4.6/conf/目录下
+		 cp sqoop-env-template.sh sqoop-env.sh
+		 vi sqoop-env.sh
+		 修改对应的选项：
+			#Set path to where bin/hadoop is available
+			export HADOOP_COMMON_HOME=/training/hadoop-2.7.3
+
+			#Set path to where hadoop-*-core.jar is available
+			export HADOOP_MAPRED_HOME=/training/hadoop-2.7.3
+
+			#set the path to where bin/hbase is available
+			#export HBASE_HOME=/training/hbase-1.3.1
+
+			#Set the path to where bin/hive is available
+			#export HIVE_HOME=/training/hive
+
+			#Set the path for where zookeper config dir is
+			export ZOOCFGDIR=/training/zookeeper-3.4.5
+
+	（5）将mysql的驱动程序mysql-connector-java-5.1.44-bin.jar上传到/training/sqoop-1.4.6/lib目录下
+
+	（6）进入到/tools目录下,解压sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+
+			tar -zvxf sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+			cd /tools/sqoop-1.4.6.bin__hadoop-2.0.4-alpha
+			将sqoop-1.4.6.jar复制到/training/sqoop-1.4.6/lib/目录下（如果没有一步，会报错: 找不到或无法加载主类 org.apache.sqoop.Sqoop）
+			cp sqoop-1.4.6.jar /training/sqoop-1.4.6/lib/
+4）、测试sqoop命令
+	sqoop help
+	不报错，即安装正确
+	
+	19/04/25 05:25:58 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6
+	usage: sqoop COMMAND [ARGS]
+	Available commands:
+	codegen            Generate code to interact with database records
+	create-hive-table  Import a table definition into Hive
+	eval               Evaluate a SQL statement and display the results
+	export             Export an HDFS directory to a database table
+	help               List available commands
+	import             Import a table from a database to HDFS
+	import-all-tables  Import tables from a database to HDFS
+	import-mainframe   Import datasets from a mainframe server to HDFS
+	job                Work with saved jobs
+	list-databases     List available databases on a server
+	list-tables        List available tables in a database
+	merge              Merge results of incremental imports
+	metastore          Run a standalone Sqoop metastore
+	version            Display version information
+	
+	
