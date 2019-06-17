@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>ECharts</title>
+<!-- 引入 echarts.js -->
+<script src="js/echarts.min.js"></script>
+</head>
+
+<body>
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<div id="main" style="width: 600px; height: 400px;"></div>
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript">
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('main'));
+
+		var dataName = [];
+		var dataValue = [];
+
+		//执行方法
+		//getResultData();
+
+		//方法声明
+		function getResultData() {
+			$.ajax({
+				url : "http://192.168.215.131:8080/university/result/getResultData",
+				type : "GET",
+				dataType : "json",
+				success : function(ret) {
+					console.log(JSON.stringify(ret));
+					var datas = ret.data;
+					for (var i = 0; i < datas.length; i++) {
+						var obj = datas[i];
+						dataName.push(obj[2]);
+						dataValue.push(obj[1]);
+					}
+
+					// 指定图表的配置项和数据
+					var option = {
+						title : {
+							text : '分析结果'
+						},
+						tooltip : {},
+						legend : {
+							data : [ '商品热度' ]
+						},
+						xAxis : {
+							data : dataName
+						},
+						yAxis : {},
+						series : [ {
+							name : '商品热度',
+							type : 'bar',
+							data : dataValue
+						} ]
+					};
+
+					// 使用刚指定的配置项和数据显示图表。
+					myChart.setOption(option);
+				}
+			});
+
+		}
+	</script>
+</body>
+
+</html>
