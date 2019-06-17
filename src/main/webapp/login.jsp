@@ -95,7 +95,7 @@
 							alert("注册成功~");
 							setTimeout("hide_register_window()", 200);
 						} else {
-							alert("错误");
+							alert("注册失败~");
 						}
 					}
 				});
