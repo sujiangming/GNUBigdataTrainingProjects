@@ -30,6 +30,9 @@ import com.niit.university.utils.UploadUtils;
 @Controller
 public class GoodsController {
 
+	/**
+	 * @category 注释下
+	 */
 	@Resource
 	GoodsService goodsService;
 
@@ -247,8 +250,8 @@ public class GoodsController {
 		String str = "";
 
 		for (Goods goods : list) {
-			// 192.168.215.131这个虚拟机上的ip地址
-			str += "http://192.168.215.131/shop/detail.html?id=" + goods.getId() + "\n";
+			// 192.168.215.141这个虚拟机上的ip地址
+			str += "http://192.168.215.141/shop/detail.html?id=" + goods.getId() + "\n";
 		}
 
 		System.out.println(str);
